@@ -838,7 +838,9 @@ async def upload_image(current_admin: dict = Depends(get_current_admin), file: U
     data_url = f"data:{content_type};base64,{base64_image}"
     return {"url": data_url, "filename": file.filename}
 
-
+@app.get("/")
+async def main_root():
+    return {"message": "ToolsMetric API is running"}
 # Include the router in the main app
 app.include_router(api_router)
 
