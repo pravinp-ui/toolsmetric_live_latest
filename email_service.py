@@ -9,11 +9,16 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Email Configuration
-SMTP_HOST = os.environ.get('SMTP_HOST', 'smtp.hostinger.com')
-SMTP_PORT = int(os.environ.get('SMTP_PORT', 587))
-SMTP_EMAIL = os.environ.get('SMTP_EMAIL', 'support@toolsmetric.com')
-SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', '&l~yrU@k8=Y')
-ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'support@toolsmetric.com')
+# SMTP_HOST = os.environ.get('SMTP_HOST', 'smtp.hostinger.com')
+# SMTP_PORT = int(os.environ.get('SMTP_PORT', 587))
+# SMTP_EMAIL = os.environ.get('SMTP_EMAIL', 'support@toolsmetric.com')
+# SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', '&l~yrU@k8=Y')
+# ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'support@toolsmetric.com')
+SMTP_HOST = os.environ['SMTP_HOST']
+SMTP_PORT = int(os.environ['SMTP_PORT'])
+SMTP_EMAIL = os.environ['SMTP_EMAIL']
+SMTP_PASSWORD = os.environ['SMTP_PASSWORD']
+ADMIN_EMAIL = os.environ['ADMIN_EMAIL']
 SITE_NAME = "ToolsMetric"
 SITE_URL = "https://toolsmetric.com"
 
@@ -38,8 +43,10 @@ def send_email(to_email: str, subject: str, html_content: str, plain_content: Op
         # Create SSL context
         context = ssl.create_default_context()
 
-        with smtplib.SMTP(SMTP_HOST, 587) as server:
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+    server.ehlo()
     server.starttls()
+    server.ehlo()
     server.login(SMTP_EMAIL, SMTP_PASSWORD)
     server.sendmail(SMTP_EMAIL, to_email, msg.as_string())
         # Connect and send
