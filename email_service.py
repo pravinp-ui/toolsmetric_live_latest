@@ -43,16 +43,11 @@ def send_email(to_email: str, subject: str, html_content: str, plain_content: Op
         # Create SSL context
         context = ssl.create_default_context()
 
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
-    server.ehlo()
-    server.starttls()
-    server.ehlo()
-    server.login(SMTP_EMAIL, SMTP_PASSWORD)
-    server.sendmail(SMTP_EMAIL, to_email, msg.as_string())
+        
         # Connect and send
-        # with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, context=context) as server:
-        #     server.login(SMTP_EMAIL, SMTP_PASSWORD)
-        #     server.sendmail(SMTP_EMAIL, to_email, msg.as_string())
+        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, context=context) as server:
+            server.login(SMTP_EMAIL, SMTP_PASSWORD)
+            server.sendmail(SMTP_EMAIL, to_email, msg.as_string())
 
         logger.info(f"Email sent successfully to {to_email}")
         return True
