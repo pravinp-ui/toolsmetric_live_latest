@@ -8,13 +8,13 @@ logger = logging.getLogger(__name__)
 resend.api_key = os.environ.get("RESEND_API_KEY")
 
 SITE_NAME = "ToolsMetric"
-SITE_EMAIL = "onboarding@resend.dev"  # change after domain verification
+SITE_EMAIL = "no-reply@info.toolsmetric.com"  # change after domain verification
 ADMIN_EMAIL = "support@toolsmetric.com"
 
 # Email Configuration
 # SMTP_HOST = os.environ.get('SMTP_HOST', 'smtp.hostinger.com')
 # SMTP_PORT = int(os.environ.get('SMTP_PORT', 465))
-# SMTP_EMAIL = os.environ.get('SMTP_EMAIL', 'support@toolsmetric.com')
+# SMTP_EMAIL = os.environ.get('SMTP_EMAIL', 'noreply@mail.toolsmetric.com')
 # SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', '&l~yrU@k8=Y')
 # ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'support@toolsmetric.com')
 # SITE_NAME = "ToolsMetric"
